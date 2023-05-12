@@ -72,6 +72,9 @@ def add_crontab_row(user: str, task_string: str) -> None:
     """
     path = get_current_path(user)
 
+    if not Path(path).is_file():
+        create_crontab_file(path)
+
     with open(path, "a") as f:
         f.write(task_string)
 
